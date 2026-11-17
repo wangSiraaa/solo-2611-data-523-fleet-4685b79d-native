@@ -1,0 +1,65 @@
+{
+  "entities": {
+    "a": {
+      "name": "old",
+      "note": "keep"
+    },
+    "b": {
+      "name": "B",
+      "note": null
+    }
+  },
+  "links": [
+    [
+      "a",
+      "child",
+      "b"
+    ]
+  ],
+  "pages": [
+    {
+      "round_id": "r2",
+      "page": 0,
+      "events": [
+        {
+          "type": "entity",
+          "id": "a",
+          "name": "new"
+        }
+      ],
+      "nextLink": "/account/delta/p1"
+    },
+    {
+      "round_id": "r2",
+      "page": 1,
+      "events": [
+        {
+          "type": "linkDelete",
+          "source": "a",
+          "nav": "child",
+          "target": "b"
+        },
+        {
+          "type": "linkAdd",
+          "source": "a",
+          "nav": "child",
+          "target": "c"
+        }
+      ],
+      "nextLink": "/account/delta/p2"
+    },
+    {
+      "round_id": "r2",
+      "page": 2,
+      "events": [
+        {
+          "type": "entity",
+          "id": "c",
+          "name": "C",
+          "note": null
+        }
+      ],
+      "deltaLink": "/account/delta/t2"
+    }
+  ]
+}
