@@ -1,0 +1,1097 @@
+{
+  "path": "work.sqlite",
+  "grace": 5,
+  "trace": [
+    {
+      "step": 0,
+      "op": "feed",
+      "ok": true,
+      "result": {
+        "status": "APPLIED",
+        "lsn": 1,
+        "tx": "seed",
+        "kind": "begin"
+      },
+      "inspect": {
+        "applied_lsn": 1,
+        "visible_commit": 0,
+        "last_horizon": 0,
+        "versions": [],
+        "queries": [],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 1,
+      "op": "feed",
+      "ok": true,
+      "result": {
+        "status": "APPLIED",
+        "lsn": 2,
+        "kind": "put",
+        "tx": "seed",
+        "key": "b",
+        "value": 20
+      },
+      "inspect": {
+        "applied_lsn": 2,
+        "visible_commit": 0,
+        "last_horizon": 0,
+        "versions": [],
+        "queries": [],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 2,
+      "op": "feed",
+      "ok": true,
+      "result": {
+        "status": "APPLIED",
+        "lsn": 3,
+        "kind": "put",
+        "tx": "seed",
+        "key": "a",
+        "value": 10
+      },
+      "inspect": {
+        "applied_lsn": 3,
+        "visible_commit": 0,
+        "last_horizon": 0,
+        "versions": [],
+        "queries": [],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 3,
+      "op": "feed",
+      "ok": true,
+      "result": {
+        "status": "APPLIED",
+        "lsn": 4,
+        "kind": "commit",
+        "tx": "seed",
+        "visible_commit": 4
+      },
+      "inspect": {
+        "applied_lsn": 4,
+        "visible_commit": 4,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": null,
+            "value": 20,
+            "deleted": 0
+          }
+        ],
+        "queries": [],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 4,
+      "op": "begin",
+      "ok": true,
+      "result": {
+        "query_id": "report",
+        "snapshot": 4,
+        "state": "RUNNING"
+      },
+      "inspect": {
+        "applied_lsn": 4,
+        "visible_commit": 4,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": null,
+            "value": 20,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": null,
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 5,
+      "op": "next",
+      "ok": true,
+      "result": [
+        {
+          "key": "a",
+          "value": 10
+        }
+      ],
+      "inspect": {
+        "applied_lsn": 4,
+        "visible_commit": 4,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": null,
+            "value": 20,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "a",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 6,
+      "op": "feed",
+      "ok": true,
+      "result": {
+        "status": "APPLIED",
+        "lsn": 5,
+        "tx": "hot",
+        "kind": "begin"
+      },
+      "inspect": {
+        "applied_lsn": 5,
+        "visible_commit": 4,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": null,
+            "value": 20,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "a",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 7,
+      "op": "feed",
+      "ok": true,
+      "result": {
+        "status": "APPLIED",
+        "lsn": 6,
+        "kind": "put",
+        "tx": "hot",
+        "key": "b",
+        "value": 99
+      },
+      "inspect": {
+        "applied_lsn": 6,
+        "visible_commit": 4,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": null,
+            "value": 20,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "a",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 8,
+      "op": "feed",
+      "ok": true,
+      "result": {
+        "status": "APPLIED",
+        "lsn": 7,
+        "kind": "commit",
+        "tx": "hot",
+        "visible_commit": 7
+      },
+      "inspect": {
+        "applied_lsn": 7,
+        "visible_commit": 7,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": 7,
+            "value": 20,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "a",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 9,
+      "op": "feed",
+      "ok": true,
+      "result": {
+        "status": "WAITING",
+        "lsn": 8,
+        "kind": "cleanup",
+        "horizon": 7,
+        "deadline": 105,
+        "conflicts": [
+          {
+            "id": "report",
+            "snapshot": 4
+          }
+        ]
+      },
+      "inspect": {
+        "applied_lsn": 7,
+        "visible_commit": 7,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": 7,
+            "value": 20,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "a",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [
+          {
+            "lsn": 8,
+            "kind": "cleanup",
+            "horizon": 7,
+            "deadline": 105,
+            "status": "WAITING"
+          }
+        ],
+        "pending_cleanup": {
+          "lsn": 8,
+          "horizon": 7,
+          "deadline": 105
+        }
+      }
+    },
+    {
+      "step": 10,
+      "op": "inspect",
+      "ok": true,
+      "result": {
+        "applied_lsn": 7,
+        "visible_commit": 7,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": 7,
+            "value": 20,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "a",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [
+          {
+            "lsn": 8,
+            "kind": "cleanup",
+            "horizon": 7,
+            "deadline": 105,
+            "status": "WAITING"
+          }
+        ],
+        "pending_cleanup": {
+          "lsn": 8,
+          "horizon": 7,
+          "deadline": 105
+        }
+      },
+      "inspect": {
+        "applied_lsn": 7,
+        "visible_commit": 7,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": 7,
+            "value": 20,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "a",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [
+          {
+            "lsn": 8,
+            "kind": "cleanup",
+            "horizon": 7,
+            "deadline": 105,
+            "status": "WAITING"
+          }
+        ],
+        "pending_cleanup": {
+          "lsn": 8,
+          "horizon": 7,
+          "deadline": 105
+        }
+      }
+    },
+    {
+      "step": 11,
+      "op": "reopen",
+      "ok": true,
+      "result": {
+        "reopened": true,
+        "path": "work.sqlite",
+        "grace": 5
+      },
+      "inspect": {
+        "applied_lsn": 7,
+        "visible_commit": 7,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": 7,
+            "value": 20,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "a",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [
+          {
+            "lsn": 8,
+            "kind": "cleanup",
+            "horizon": 7,
+            "deadline": 105,
+            "status": "WAITING"
+          }
+        ],
+        "pending_cleanup": {
+          "lsn": 8,
+          "horizon": 7,
+          "deadline": 105
+        }
+      }
+    },
+    {
+      "step": 12,
+      "op": "next",
+      "ok": true,
+      "result": [
+        {
+          "key": "b",
+          "value": 20
+        }
+      ],
+      "inspect": {
+        "applied_lsn": 7,
+        "visible_commit": 7,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": 7,
+            "value": 20,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "b",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [
+          {
+            "lsn": 8,
+            "kind": "cleanup",
+            "horizon": 7,
+            "deadline": 105,
+            "status": "WAITING"
+          }
+        ],
+        "pending_cleanup": {
+          "lsn": 8,
+          "horizon": 7,
+          "deadline": 105
+        }
+      }
+    },
+    {
+      "step": 13,
+      "op": "next",
+      "ok": true,
+      "result": [],
+      "inspect": {
+        "applied_lsn": 7,
+        "visible_commit": 7,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": 7,
+            "value": 20,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "b",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [
+          {
+            "lsn": 8,
+            "kind": "cleanup",
+            "horizon": 7,
+            "deadline": 105,
+            "status": "WAITING"
+          }
+        ],
+        "pending_cleanup": {
+          "lsn": 8,
+          "horizon": 7,
+          "deadline": 105
+        }
+      }
+    },
+    {
+      "step": 14,
+      "op": "feed",
+      "ok": true,
+      "result": {
+        "status": "WAITING",
+        "lsn": 8,
+        "kind": "cleanup",
+        "horizon": 7,
+        "deadline": 105,
+        "conflicts": [
+          {
+            "id": "report",
+            "snapshot": 4
+          }
+        ]
+      },
+      "inspect": {
+        "applied_lsn": 7,
+        "visible_commit": 7,
+        "last_horizon": 0,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 4,
+            "dead": 7,
+            "value": 20,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "b",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          }
+        ],
+        "pending": [
+          {
+            "lsn": 8,
+            "kind": "cleanup",
+            "horizon": 7,
+            "deadline": 105,
+            "status": "WAITING"
+          }
+        ],
+        "pending_cleanup": {
+          "lsn": 8,
+          "horizon": 7,
+          "deadline": 105
+        }
+      }
+    },
+    {
+      "step": 15,
+      "op": "feed",
+      "ok": true,
+      "result": {
+        "status": "APPLIED",
+        "lsn": 8,
+        "kind": "cleanup",
+        "horizon": 7,
+        "deadline": 105,
+        "cancelled": [
+          "report"
+        ]
+      },
+      "inspect": {
+        "applied_lsn": 8,
+        "visible_commit": 7,
+        "last_horizon": 7,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "b",
+            "state": "CANCELLED",
+            "cancel_lsn": 8,
+            "cancel_reason": "DEADLINE"
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 16,
+      "op": "next",
+      "ok": false,
+      "error": "ConflictCancelled",
+      "query_id": "report",
+      "cancel_lsn": 8,
+      "message": "ConflictCancelled: query 'report' cancelled by cleanup lsn 8",
+      "inspect": {
+        "applied_lsn": 8,
+        "visible_commit": 7,
+        "last_horizon": 7,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "b",
+            "state": "CANCELLED",
+            "cancel_lsn": 8,
+            "cancel_reason": "DEADLINE"
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 17,
+      "op": "close",
+      "ok": true,
+      "result": {
+        "id": "report",
+        "snapshot": 4,
+        "last_key": "b",
+        "state": "CANCELLED",
+        "cancel_lsn": 8,
+        "cancel_reason": "DEADLINE"
+      },
+      "inspect": {
+        "applied_lsn": 8,
+        "visible_commit": 7,
+        "last_horizon": 7,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "b",
+            "state": "CANCELLED",
+            "cancel_lsn": 8,
+            "cancel_reason": "DEADLINE"
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 18,
+      "op": "begin",
+      "ok": true,
+      "result": {
+        "query_id": "fresh",
+        "snapshot": 7,
+        "state": "RUNNING"
+      },
+      "inspect": {
+        "applied_lsn": 8,
+        "visible_commit": 7,
+        "last_horizon": 7,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "fresh",
+            "snapshot": 7,
+            "last_key": null,
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          },
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "b",
+            "state": "CANCELLED",
+            "cancel_lsn": 8,
+            "cancel_reason": "DEADLINE"
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 19,
+      "op": "next",
+      "ok": true,
+      "result": [
+        {
+          "key": "a",
+          "value": 10
+        },
+        {
+          "key": "b",
+          "value": 99
+        }
+      ],
+      "inspect": {
+        "applied_lsn": 8,
+        "visible_commit": 7,
+        "last_horizon": 7,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "fresh",
+            "snapshot": 7,
+            "last_key": "b",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          },
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "b",
+            "state": "CANCELLED",
+            "cancel_lsn": 8,
+            "cancel_reason": "DEADLINE"
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    },
+    {
+      "step": 20,
+      "op": "inspect",
+      "ok": true,
+      "result": {
+        "applied_lsn": 8,
+        "visible_commit": 7,
+        "last_horizon": 7,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "fresh",
+            "snapshot": 7,
+            "last_key": "b",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          },
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "b",
+            "state": "CANCELLED",
+            "cancel_lsn": 8,
+            "cancel_reason": "DEADLINE"
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      },
+      "inspect": {
+        "applied_lsn": 8,
+        "visible_commit": 7,
+        "last_horizon": 7,
+        "versions": [
+          {
+            "key": "a",
+            "born": 4,
+            "dead": null,
+            "value": 10,
+            "deleted": 0
+          },
+          {
+            "key": "b",
+            "born": 7,
+            "dead": null,
+            "value": 99,
+            "deleted": 0
+          }
+        ],
+        "queries": [
+          {
+            "id": "fresh",
+            "snapshot": 7,
+            "last_key": "b",
+            "state": "RUNNING",
+            "cancel_lsn": null,
+            "cancel_reason": null
+          },
+          {
+            "id": "report",
+            "snapshot": 4,
+            "last_key": "b",
+            "state": "CANCELLED",
+            "cancel_lsn": 8,
+            "cancel_reason": "DEADLINE"
+          }
+        ],
+        "pending": [],
+        "pending_cleanup": null
+      }
+    }
+  ]
+}

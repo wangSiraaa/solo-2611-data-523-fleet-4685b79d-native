@@ -1,0 +1,35 @@
+{
+  "grace": 5,
+  "path": "work.sqlite",
+  "steps": [
+    {"op": "feed", "now": 0, "record": {"lsn": 1, "kind": "begin", "tx": "seed"}},
+    {"op": "feed", "now": 0, "record": {"lsn": 2, "kind": "put", "tx": "seed", "key": "b", "value": 20}},
+    {"op": "feed", "now": 0, "record": {"lsn": 3, "kind": "put", "tx": "seed", "key": "a", "value": 10}},
+    {"op": "feed", "now": 0, "record": {"lsn": 4, "kind": "commit", "tx": "seed"}},
+
+    {"op": "begin", "query_id": "report"},
+    {"op": "next", "query_id": "report", "n": 1},
+
+    {"op": "feed", "now": 0, "record": {"lsn": 5, "kind": "begin", "tx": "hot"}},
+    {"op": "feed", "now": 0, "record": {"lsn": 6, "kind": "put", "tx": "hot", "key": "b", "value": 99}},
+    {"op": "feed", "now": 0, "record": {"lsn": 7, "kind": "commit", "tx": "hot"}},
+
+    {"op": "feed", "now": 100, "record": {"lsn": 8, "kind": "cleanup", "horizon": 7}},
+    {"op": "inspect"},
+
+    {"op": "reopen"},
+
+    {"op": "next", "query_id": "report", "n": 1},
+    {"op": "next", "query_id": "report", "n": 1},
+
+    {"op": "feed", "now": 104, "record": {"lsn": 8, "kind": "cleanup", "horizon": 7}},
+    {"op": "feed", "now": 105, "record": {"lsn": 8, "kind": "cleanup", "horizon": 7}},
+
+    {"op": "next", "query_id": "report", "n": 1},
+    {"op": "close", "query_id": "report"},
+
+    {"op": "begin", "query_id": "fresh"},
+    {"op": "next", "query_id": "fresh", "n": 9},
+    {"op": "inspect"}
+  ]
+}
