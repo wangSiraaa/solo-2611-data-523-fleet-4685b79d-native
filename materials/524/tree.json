@@ -1,0 +1,23 @@
+{
+  "commit": "1111111111111111111111111111111111111111",
+  "entries": [
+    {
+      "path": "train/data.csv",
+      "filter": "lfs",
+      "blob": "git_blobs/asset-pointer.txt",
+      "blob_sha256": "18e2593ce08278102f0dfe9619b3efd3f612aa1576650688c9408a744766d850"
+    },
+    {
+      "path": "copy/data.csv",
+      "filter": "lfs",
+      "blob": "git_blobs/asset-pointer.txt",
+      "blob_sha256": "18e2593ce08278102f0dfe9619b3efd3f612aa1576650688c9408a744766d850"
+    },
+    {
+      "path": "docs/example.txt",
+      "filter": "none",
+      "blob": "git_blobs/ordinary-pointer.txt",
+      "blob_sha256": "18e2593ce08278102f0dfe9619b3efd3f612aa1576650688c9408a744766d850"
+    }
+  ]
+}

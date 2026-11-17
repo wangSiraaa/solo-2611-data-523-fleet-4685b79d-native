@@ -1,0 +1,17 @@
+{
+  "paths": [
+    {
+      "path": "data/a.csv",
+      "filter": "lfs"
+    },
+    {
+      "path": "copy/a.csv",
+      "filter": "lfs"
+    },
+    {
+      "path": "notes/pointer.txt",
+      "filter": null
+    }
+  ],
+  "asset": "id,value\nx,17\n"
+}
