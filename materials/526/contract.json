@@ -1,0 +1,84 @@
+{
+  "templates": {
+    "add_customer": "INSERT INTO customers(alias,password) VALUES (?,?)",
+    "add_order": "INSERT INTO orders(id,customer_id,amount) VALUES (?,?,?)",
+    "read_customer": "SELECT id,alias FROM customers WHERE id=?",
+    "rename_customer": "UPDATE customers SET alias=? WHERE id=?",
+    "delete_order": "DELETE FROM orders WHERE id=?",
+    "add_order_ref": "INSERT INTO orders(id,customer_id,amount,external_ref) VALUES (?,?,?,?)"
+  },
+  "annotations": {
+    "add_customer": [
+      "identity(customer_alias)",
+      "secret"
+    ],
+    "add_order": [
+      "public",
+      "capture(customer_id)",
+      "public"
+    ],
+    "read_customer": [
+      "capture(customer_id)"
+    ],
+    "rename_customer": [
+      "identity(customer_alias)",
+      "capture(customer_id)"
+    ],
+    "delete_order": [
+      "public"
+    ],
+    "add_order_ref": [
+      "public",
+      "capture(customer_id)",
+      "public",
+      "identity(order_ref)"
+    ]
+  },
+  "sensitive_examples": [
+    "PRIVATE_A17",
+    "SECRET_P9"
+  ],
+  "column_annotations": {
+    "customers.id": "generated(customer_id)",
+    "customers.alias": "identity(customer_alias)",
+    "customers.password": "secret",
+    "orders.id": "public",
+    "orders.customer_id": "capture(customer_id)",
+    "orders.amount": "public",
+    "orders.external_ref": "identity(order_ref)"
+  },
+  "safe_result_projection": {
+    "read_customer": {
+      "id": "capture(customer_id)",
+      "alias": "identity(customer_alias)"
+    },
+    "add_customer": {
+      "lastrowid": "capture(customer_id)"
+    },
+    "rename_customer": {
+      "rowcount": "public"
+    },
+    "delete_order": {
+      "rowcount": "public"
+    }
+  },
+  "capture_reference_format": {
+    "capture": {
+      "session": "session-1",
+      "operation": "event-3",
+      "field": "lastrowid"
+    }
+  },
+  "identity_examples": [
+    {
+      "template": "add_customer",
+      "alias": "SAME_DOMAIN_SAMPLE"
+    },
+    {
+      "template": "add_order_ref",
+      "external_ref": "SAME_DOMAIN_SAMPLE",
+      "expected": "customer_alias与order_ref必须各自分配符号，不因原文相同合域"
+    }
+  ],
+  "capture_scope": "仅成功且未被事务或保存点撤销的操作结果可引用。"
+}
